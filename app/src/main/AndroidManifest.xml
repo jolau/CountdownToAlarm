@@ -32,9 +32,6 @@
                 <!--android:value=".SettingsActivity" />-->
         </service>
 
-        <activity
-            android:name="ch.jolau.countdowntoalarm.SettingsActivity"
-            android:label="@string/title_activity_settings" />
     </application>
 
 </manifest>
