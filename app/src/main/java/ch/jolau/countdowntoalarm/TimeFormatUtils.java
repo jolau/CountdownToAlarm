@@ -36,7 +36,11 @@ public class TimeFormatUtils {
         } else if (timeDiff < ONE_HOUR) {
             return res.getString(R.string.in_one_time, getMinuteString(res, timeDiff, shortVersion));
         } else if (timeDiff < ONE_DAY) {
-            return res.getString(R.string.in_time, getHourString(res, timeDiff, shortVersion), getMinuteString(res, timeDiff, shortVersion));
+            if (getMinutesOfHour(timeDiff) == 60)
+                return res.getString(R.string.in_one_time, getHourString(res, timeDiff, shortVersion));
+            else {
+                return res.getString(R.string.in_time, getHourString(res, timeDiff, shortVersion), getMinuteString(res, timeDiff, shortVersion));
+            }
         } else {
             return res.getString(R.string.in_time, getDayString(res, timeDiff, shortVersion), getHourString(res, timeDiff, shortVersion));
         }
@@ -49,14 +53,18 @@ public class TimeFormatUtils {
 
     private static String getHourString(Resources res, double timeDiff, boolean shortVersion) {
         double days = Math.floor(timeDiff / ONE_DAY);
-        double hours = days > 0 ? Math.ceil(timeDiff / ONE_HOUR) : Math.floor(timeDiff / ONE_HOUR);
+        double hours = days > 0 ? Math.ceil(timeDiff / ONE_HOUR) : Math.floor(timeDiff / ONE_HOUR); //if the minutes are not shown, the the rounded up value of the hours makes more sense
         long hourOfDay = (long) (hours - days * 24);
         return shortVersion ? res.getString(R.string.short_hour, hourOfDay) : res.getQuantityString(R.plurals.hours, (int) hourOfDay, hourOfDay);
     }
 
     private static String getMinuteString(Resources res, double timeDiff, boolean shortVersion) {
-        double hours = Math.floor(timeDiff / ONE_HOUR);
-        long minutesOfHour = (long) (Math.rint(timeDiff / ONE_MINUTE) - hours * 60);
+        long minutesOfHour = getMinutesOfHour(timeDiff);
         return shortVersion ? res.getString(R.string.short_minute, minutesOfHour) : res.getQuantityString(R.plurals.minutes, (int) minutesOfHour, minutesOfHour);
+    }
+
+    private static long getMinutesOfHour(double timeDiff) {
+        double hours = Math.floor(timeDiff / ONE_HOUR);
+        return (long) (Math.ceil(timeDiff / ONE_MINUTE) - hours * 60);
     }
 }
