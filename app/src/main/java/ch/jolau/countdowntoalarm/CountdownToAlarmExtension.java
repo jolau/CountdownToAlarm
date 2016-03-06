@@ -68,8 +68,8 @@ public class CountdownToAlarmExtension extends DashClockExtension {
         if (alarmClockInfo != null) {
             long alarmTime = alarmClockInfo.getTriggerTime();
 
-            String timeToAlarm = TimeFormatUtils.getRelativeToFutureTimeString(this, alarmTime, System.currentTimeMillis(), false);
-            String timeToAlarmShort = TimeFormatUtils.getRelativeToFutureTimeString(this, alarmTime, System.currentTimeMillis(), true);
+            String timeToAlarm = TimeFormatUtils.getRelativeToFutureTimeString(this, alarmTime, false);
+            String timeToAlarmShort = TimeFormatUtils.getRelativeToFutureTimeString(this, alarmTime, true);
 
             // Publish the extension data update.
             publishUpdate(new ExtensionData()

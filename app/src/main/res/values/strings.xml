@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name">CountdownToAlarm</string>
+    <string name="app_name">Countdown To Alarm</string>
     <string name="extension_title">Countdown To Alarm</string>
     <string name="extension_description">Shows the time left until the next alarm rings</string>
-    <string name="pref_name_title">JoLau</string>
-    <string name="pref_name_default">Jonas Lauener</string>
-    <string name="title_settings">CountdownToAlarm Settings</string>
 
     <string name="now">now</string>
     <string name="in_one_time">in %1$s</string>
@@ -13,5 +10,4 @@
     <string name="short_day">%1$sd</string>
     <string name="short_hour">%1$sh</string>
     <string name="short_minute">%1$smin</string>
-    <string name="title_activity_settings">Settings</string>
 </resources>
